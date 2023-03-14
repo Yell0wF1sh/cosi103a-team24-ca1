@@ -23,7 +23,7 @@ from gpt import GPT
 import os
 
 app = Flask(__name__)
-gptAPI = GPT(os.environ.get('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'))
+gptAPI = GPT(os.environ.get('APIKEY'))
 
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'_5#y2L"F4Q789789uioujkkljkl...8z\n\xec]/'
@@ -65,6 +65,10 @@ def gptdemo():
             <p><input type=submit value="get response">
         </form>
         '''
+
+@app.route('/about')
+def about():
+
 
 if __name__=='__main__':
     # run the code on port 5001, MacOS uses port 5000 for its own service :(

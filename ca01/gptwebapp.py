@@ -17,6 +17,10 @@ On Windows:
 % pip install flask
 % $env:APIKEY="....." # in powershell
 % python gptwebapp.py
+
+@Modifier: Qiuyang Wang
+@Modifier: Shihao Wang
+@Date: 2023-3-14
 '''
 from flask import request,redirect,url_for,Flask
 from gpt import GPT
@@ -30,12 +34,21 @@ app.secret_key = b'_5#y2L"F4Q789789uioujkkljkl...8z\n\xec]/'
 
 @app.route('/')
 def index():
-    ''' display a link to the general query page '''
+    ''' display links to each of the team-members pages '''
     print('processing / route')
     return f'''
-        <h1>GPT Demo</h1>
-        <a href="{url_for('gptdemo')}">Ask questions to GPT</a>
+        <h1>cosi103a-team24-ca1</h1>
+        <a href="{url_for('qiuyangwang')}">Qiuyang Wang's link</a>
+        <a href="{url_for('gptdemo')}">GPT</a>
     '''
+
+@app.route('/about')
+def about():
+    """Display the about page."""
+
+@app.route('/team')
+def team():
+    """Display the team page."""
 
 
 @app.route('/gptdemo', methods=['GET', 'POST'])
@@ -66,9 +79,11 @@ def gptdemo():
         </form>
         '''
 
-@app.route('/about')
-def about():
 
+@app.route('/qiuyang-wang')
+def qiuyangwang():
+    """Display the qiuyang-wang page."""
+    print("processing qiuyang-wang route")
 
 if __name__=='__main__':
     # run the code on port 5001, MacOS uses port 5000 for its own service :(

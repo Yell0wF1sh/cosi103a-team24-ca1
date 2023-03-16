@@ -22,7 +22,7 @@ On Windows:
 @Modifier: Shihao Wang
 @Date: 2023-3-14
 '''
-from flask import request,redirect,url_for,Flask
+from flask import request, redirect, url_for, Flask
 from gpt import GPT
 import os
 
@@ -32,6 +32,7 @@ gptAPI = GPT(os.environ.get('APIKEY'))
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'_5#y2L"F4Q789789uioujkkljkl...8z\n\xec]/'
 
+
 @app.route('/')
 def index():
     ''' display links to each of the team-members pages '''
@@ -40,11 +41,57 @@ def index():
         <h1>cosi103a-team24-ca1</h1>
         <a href="{url_for('qiuyangwang')}">Qiuyang Wang's link</a>
         <a href="{url_for('gptdemo')}">GPT</a>
+        <a href="{url_for('about')}">Members</a>
     '''
+
 
 @app.route('/about')
 def about():
     """Display the about page."""
+    return '''
+    <html>
+        <head>
+            <style>
+                #header {
+                    margin: auto;
+                    padding: 20px;
+                    width: 60%;
+                    background-color: lightblue;
+                    text-align: center;
+                }
+                #body {
+                    margin: auto;
+                    width: 60%;
+                    padding: 10px;
+                    text-align: center;
+                }
+                #sr, #qw, #sw {
+                    border: 3px solid blue;
+                    padding: 5px;
+                    margin: 5px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1 id="header">Members:</h1>
+            <div id="body">
+                <div id="sr">
+                    <h2>Shentong Rao</h2>
+                    <p>github:</p>
+                </div>
+                <div id="qw">
+                    <h2>Qiuyang Wang</h2>
+                    <div>github: <a href="https://github.com/Yell0wF1sh">https://github.com/Yell0wF1sh</a></div>
+                </div>
+                <div id="sw">
+                    <h2>Steve Wang</h2>
+                    <div>github: <a href="https://github.com/Billy-FIN">https://github.com/Billy-FIN</a></div>
+                </div>
+            </div>
+        </body>
+    </html>
+    '''
+
 
 @app.route('/team')
 def team():
@@ -85,6 +132,7 @@ def qiuyangwang():
     """Display the qiuyang-wang page."""
     print("processing qiuyang-wang route")
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     # run the code on port 5001, MacOS uses port 5000 for its own service :(
-    app.run(debug=True,port=5001)
+    app.run(debug=True, port=5001)

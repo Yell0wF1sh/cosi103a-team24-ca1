@@ -40,6 +40,8 @@ def index():
         <h1>cosi103a-team24-ca1</h1>
         <a href="{url_for('about')}">About</a>
         <br>
+        <a href="{url_for('gptdemo')}">GPT Demo</a>
+        <br>
         <a href="{url_for('qiuyangwang')}">Qiuyang Wang's Page</a>
         <br>
         <a href="{url_for('team')}">Member</a>
@@ -51,6 +53,7 @@ def index():
 def team():
     """Display the team page."""
     return '''
+    <!DOCTYPE html>
     <html>
         <head>
             <style>
@@ -169,17 +172,49 @@ def gptdemo():
         '''
     else:
         return '''
-        <h1>GPT Demo App</h1>
-        Enter your query below
-        <form method="post">
-            <textarea name="prompt"></textarea>
-            <p><input type=submit value="get response">
-        </form>
+
+            <!DOCTYPE html>
+
+            <head>
+                <style>
+                    #page {
+                        width: 80vw;
+                        height: 80vh;
+                        border: 3px solid rgba(66, 245, 144, 0.837);
+                        text-align: center;
+                        margin: auto;
+                        text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);
+                    }
+
+                    #submit {
+                        font-size: 24;
+                    }
+                </style>
+            </head>
+
+            <body>
+                <div id="page">
+                    <div id="header">
+                        <h1>GPT Demo App</h1>
+                    </div>
+                    <div id="form">
+                        <form method="post">
+                            <textarea name="prompt" placeholder="Enter your query here"></textarea>
+                        </form>
+                    </div>
+                    <div id="submit">
+                        <input type=submit value="get response">
+                    </div>
+                </div>
+            </body>
         '''
+
 
 """
 @Author: Qiuyang Wang
 """
+
+
 @app.route('/qiuyang-wang', methods=['GET', 'POST'])
 def qiuyangwang():
     """Display the qiuyang-wang page."""

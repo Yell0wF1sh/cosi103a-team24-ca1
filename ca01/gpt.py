@@ -39,7 +39,24 @@ class GPT():
             max_tokens=1024,
             n=1,
             stop=None,
-            temperature=0.8,
+            temperature=0.5,
+        )
+
+        response = completion.choices[0].text
+        return response
+    
+    def poetry_generator(self, theme, keywords):
+        ''' Generate a poetry 
+        
+        @Author: Qiuyang Wang
+        '''
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt='Please generate a romentic poem for me. Style: Ideal and Romanticism. Theme: ' + theme + '. Keywords: ' + keywords + '.',
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=1.0,
         )
 
         response = completion.choices[0].text

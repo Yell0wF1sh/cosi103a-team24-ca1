@@ -22,16 +22,17 @@ import openai
 
 class GPT():
     ''' make queries to gpt from a given API '''
-    def __init__(self,apikey):
+
+    def __init__(self, apikey):
         ''' store the apikey in an instance variable '''
-        self.apikey=apikey
+        self.apikey = apikey
         # Set up the OpenAI API client
-        openai.api_key = apikey #os.environ.get('APIKEY')
+        openai.api_key = apikey  # os.environ.get('APIKEY')
 
         # Set up the model and prompt
         self.model_engine = "text-davinci-003"
 
-    def getResponse(self,prompt):
+    def getResponse(self, prompt):
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
@@ -44,15 +45,16 @@ class GPT():
 
         response = completion.choices[0].text
         return response
-    
+
     def poetry_generator(self, theme, keywords):
         ''' Generate a poetry 
-        
+
         @Author: Qiuyang Wang
         '''
         completion = openai.Completion.create(
             engine=self.model_engine,
-            prompt='Please generate a romentic poem for me. Style: Ideal and Romanticism. Theme: ' + theme + '. Keywords: ' + keywords + '.',
+            prompt='Please generate a romentic poem for me. Style: Ideal and Romanticism. Theme: ' +
+            theme + '. Keywords: ' + keywords + '.',
             max_tokens=1024,
             n=1,
             stop=None,
@@ -62,7 +64,25 @@ class GPT():
         response = completion.choices[0].text
         return response
 
-if __name__=='__main__':
+    def poetry_translator(self, text, lang):
+        '''Generate a translation for a poem
+            @Author: Steve Wang
+        '''
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt='Please translate the following poem into ' +
+            lang + '. Here is the poem: ' + text + '.',
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=1.0,
+        )
+
+        response = completion.choices[0].text
+        return response
+
+
+if __name__ == '__main__':
     '''
     '''
     import os

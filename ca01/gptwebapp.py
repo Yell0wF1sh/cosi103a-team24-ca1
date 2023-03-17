@@ -44,6 +44,8 @@ def index():
         <br>
         <a href="{url_for('qiuyangwang')}">Qiuyang Wang's Page</a>
         <br>
+        <a href="{url_for('translate')}">Translate</a>
+        <br>
         <a href="{url_for('team')}">Member</a>
 
     '''
@@ -238,6 +240,50 @@ def qiuyangwang():
         <form method="post">
             Enter your the theme of your poem below (seperate with space if there are multiple keywords): <input type="text" name="theme"><br>
             Enter your the keywords of your poem below (seperate with space if there are multiple keywords): <input type="text" name="keywords"><br>
+            <p><input type=submit value="generate">
+        </form>
+        <br>
+        <a href={url_for('index')}> Back to Home Page</a>
+        '''
+
+
+@app.route('/translate', methods=['GET', 'POST'])
+def translate():
+    if request.method == 'POST':
+        text = request.form['text']
+        lang = request.form['lang']
+        answer = gptAPI.poetry_translator(text, lang)
+        return f'''
+         <!DOCTYPE html>
+
+            <head>
+            </head>
+
+            <body>
+                <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;">
+                    <h1 style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Poetry Generator</h1>
+                    <table>
+                        <tr style="margin: 5px">
+                            <th style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Original Text</th>
+                            <th style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Translated Text</th>
+                        </tr>
+                        <tr>
+                            <td>{text}</td>
+                            <td>{answer}</td>
+                        </tr>
+                    <table>
+                    <a href={url_for('translate')}> Translate Another Poem</a>
+                    <br>
+                    <a href={url_for('index')}> Back to Home Page</a>
+                </div>
+            </body>
+        '''
+    elif request.method == 'GET':
+        return f'''
+        <h1>Poetry Generator</h1>
+        <form method="post">
+            Enter your the text of the original poem below: <input type="text" name="text"><br>
+            Enter the language that you want the poem to be: <input type="text" name="lang"><br>
             <p><input type=submit value="generate">
         </form>
         <br>

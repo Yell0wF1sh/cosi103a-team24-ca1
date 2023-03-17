@@ -222,6 +222,8 @@ def gptdemo():
 """
 @Author: Qiuyang Wang
 """
+
+
 @app.route('/qiuyang-wang', methods=['GET', 'POST'])
 def qiuyangwang():
     """Display the qiuyang-wang page."""
@@ -252,9 +254,12 @@ def qiuyangwang():
         <a href={url_for('index')}> Back to Home Page</a>
         '''
 
+
 """
 @Author: Steve Wang
 """
+
+
 @app.route('/translate', methods=['GET', 'POST'])
 def translate():
     if request.method == 'POST':
@@ -268,16 +273,16 @@ def translate():
             </head>
 
             <body>
-                <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;">
+                <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
                     <h1 style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Poetry Generator</h1>
-                    <table>
-                        <tr style="margin: 5px">
+                    <table style="margin-bottom: 10px">
+                        <tr style="margin: 10px">
                             <th style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Original Text</th>
                             <th style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Translated Text</th>
                         </tr>
                         <tr>
-                            <td>{text}</td>
-                            <td>{answer}</td>
+                            <td style="text-align: center; padding: 10px 10px;border:1.5px solid rgba(66, 245, 144, 0.837);">{text}</td>
+                            <td style="text-align: center; padding: 10px 10px;border:1.5px solid rgba(66, 245, 144, 0.837);">{answer}</td>
                         </tr>
                     <table>
                     <a href={url_for('translate')}> Translate Another Poem</a>
@@ -288,14 +293,24 @@ def translate():
         '''
     elif request.method == 'GET':
         return f'''
-        <h1>Poetry Generator</h1>
-        <form method="post">
-            Enter your the text of the original poem below: <input type="text" name="text"><br>
-            Enter the language that you want the poem to be: <input type="text" name="lang"><br>
-            <p><input type=submit value="generate">
-        </form>
-        <br>
-        <a href={url_for('index')}> Back to Home Page</a>
+        <!DOCTYPE html>
+
+            <head>
+            </head>
+            <body>
+                <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                    <h1>Poetry Generator</h1>
+                    <form method="post">
+                        <h3>Enter your the text of the original poem below:</h3>
+                        <input type="text" name="text" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;"><br>
+                        <h3>Enter the language that you want the poem to be:</h3>
+                        <input type="text" name="lang" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;"><br>
+                        <input type=submit value="Generate" style="padding: 15px 32px;background-color: rgba(66, 245, 144, 0.837);text-align: center;font-size: 16px;border:none;font-weight:bold;margin-top:20px;border-radius:5px">
+                    </form>
+                    <br>
+                    <a href={url_for('index')}> Back to Home Page</a>
+                </div>
+            </body>
         '''
 
 

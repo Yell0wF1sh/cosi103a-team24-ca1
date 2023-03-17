@@ -1,6 +1,6 @@
 '''
-gptwebapp will ask the user for a prompt and 
-then sends it to openai's GPT API to get a response.
+gptwebapp will ask the user for some needs related to poetry and 
+then sends it to openai's GPT API to generate the output.
 
 We assume that the APIKEY has been put into the shell environment.
 Run this server as follows:
@@ -18,7 +18,7 @@ On Windows:
 % python gptwebapp.py
 
 @Modifier: Qiuyang Wang
-@Modifier: Shihao Wang
+@Modifier: Steve Wang
 @Date: 2023-3-15
 '''
 from flask import request, redirect, url_for, Flask
@@ -40,11 +40,9 @@ def index():
         <h1>cosi103a-team24-ca1</h1>
         <a href="{url_for('about')}">About</a>
         <br>
-        <a href="{url_for('gptdemo')}">GPT Demo</a>
+        <a href="{url_for('qiuyangwang')}">Generator</a>
         <br>
-        <a href="{url_for('qiuyangwang')}">Qiuyang Wang's Page</a>
-        <br>
-        <a href="{url_for('translate')}">Translate</a>
+        <a href="{url_for('translate')}">Translator</a>
         <br>
         <a href="{url_for('team')}">Member</a>
 
@@ -104,53 +102,62 @@ def team():
 def about():
     """Display the about page."""
     return """
+    <!DOCTYPE html>
     <html>
+	<title>About</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f7f7f7;
+		}
+		h1 {
+			text-align: center;
+			color: #333;
+		}
+		p {
+			font-size: 18px;
+			line-height: 1.5;
+			margin-bottom: 20px;
+			text-align: justify;
+			padding: 0 20px;
+		}
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 50px 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+	</style>
+    <body>
+	    <div class="container">
+		    <h1>About</h1>
+		    <p>
+                This is a web application that can implement several functionalities related to poetry based on the user's input. It is built on Flask and GPT-3.
+            </p>
+            <p>
+                Genarator can generate poems based on the user's setting. Translator can translate the user's poetry into any language.
+            </p>
+            <p>
+                Have fun!
+            </p>
+            <p>
+                Built by Qiuyang Wang, Steve Wang, and Shentong Rao.
+            </p>
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <style type="text/css">
-            .class1 {
-                font-size: 50
-            }
-
-            .class2 {
-                font-size: 25
-            }
-
-            .class3 {
-                font-size: 20
-            }
-        </style>
-
-    </head>
+	    </div>
+    </body>
 
 
-<body>
-    <b class="class1">About</b>
-    <br>
-    <br>
-    <b class="class2">Qiuyang Wang's Page</b>
-   
-    
-
-    <br>
-    <b class="class2">Steve Wang's Page</b>
-    <br>
-
-    
-    <br>
-    <b class="class2">Shentong Rao's Page</b>
-    <br>
-    
-</body>
-
-</html>
-    
-    
-    
-    
-    
+    <script type="text/javascript">
+        console.log("Hi there!");
+        alert("Hi there!")
+        let flag = confirm("Are you happy today?")
+        while(!flag){
+            flag = confirm("Are you happy today?")
+        }
+    </script>
+    </html>
     """
 
 
@@ -215,18 +222,17 @@ def gptdemo():
 """
 @Author: Qiuyang Wang
 """
-
-
 @app.route('/qiuyang-wang', methods=['GET', 'POST'])
 def qiuyangwang():
     """Display the qiuyang-wang page."""
     if request.method == 'POST':
         theme = request.form['theme']
-        keywords = request.form['keywords']
-        answer = gptAPI.poetry_generator(theme, keywords)
+        style = request.form['style']
+        answer = gptAPI.poetry_generator(theme, style)
         return f'''
         <h1>Poetry Generator</h1>
-        <pre style="bgcolor:yellow">Theme: {theme}. Keywords: {keywords}</pre>
+        <pre style="bgcolor:yellow">Theme: {theme}</pre>
+        <pre style="bgcolor:yellow">Style: {style}</pre>
         <hr>
         Here is the poem:
         <pre style="border:thin solid black">{answer}</pre>
@@ -238,15 +244,17 @@ def qiuyangwang():
         return f'''
         <h1>Poetry Generator</h1>
         <form method="post">
-            Enter your the theme of your poem below (seperate with space if there are multiple keywords): <input type="text" name="theme"><br>
-            Enter your the keywords of your poem below (seperate with space if there are multiple keywords): <input type="text" name="keywords"><br>
+            Enter your the theme of your poem below (seperate with space if there are multiple themes): <input type="text" name="theme"><br>
+            Enter your the style of your poem below: <input type="text" name="style"><br>
             <p><input type=submit value="generate">
         </form>
         <br>
         <a href={url_for('index')}> Back to Home Page</a>
         '''
 
-
+"""
+@Author: Steve Wang
+"""
 @app.route('/translate', methods=['GET', 'POST'])
 def translate():
     if request.method == 'POST':

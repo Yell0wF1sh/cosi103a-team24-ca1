@@ -1,11 +1,6 @@
 '''
-Demo code for interacting with GPT-3 in Python.
-
-To run this you need to 
-* first visit openai.com and get an APIkey, 
-* which you export into the environment as shown in the shell code below.
-* next create a folder and put this file in the folder as gpt.py
-* finally run the following commands in that folder
+This is a poetry demo of using the OpenAI GPT-3 API
+to implement several functions.
 
 On Mac
 % pip3 install openai
@@ -16,6 +11,10 @@ On Windows:
 % pip install openai
 % $env:APIKEY="....." # in powershell
 % python gpt.py
+
+@Modifier: Qiuyang Wang
+@Modifier: Steve Wang
+@Date: 2023-3-15
 '''
 import openai
 
@@ -46,15 +45,15 @@ class GPT():
         response = completion.choices[0].text
         return response
 
-    def poetry_generator(self, theme, keywords):
-        ''' Generate a poetry 
-
+    def poetry_generator(self, theme, style):
+        '''
+        Generate a poetry with given theme and style
         @Author: Qiuyang Wang
         '''
         completion = openai.Completion.create(
             engine=self.model_engine,
             prompt='Please generate a romentic poem for me. Style: Ideal and Romanticism. Theme: ' +
-            theme + '. Keywords: ' + keywords + '.',
+            theme + '. Style: ' + style + '.',
             max_tokens=1024,
             n=1,
             stop=None,

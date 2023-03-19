@@ -265,7 +265,8 @@ def qiuyangwang():
 
 @app.route('/ShentongRao',methods = ['GET', 'POST'])
 def ShentongRao():
-    if request.method == 'POST':
+     """Display shentongrao's page which is a poem name generator"""
+     if request.method == 'POST':
         text = request.form['text']
         answer = gptAPI.poetry_namer(text)
         return f'''
@@ -278,7 +279,7 @@ def ShentongRao():
         <br>
         <a href={url_for('index')}> Back to Home Page</a>
         '''
-    elif request.method == 'GET':
+     elif request.method == 'GET':
         return f'''
         <h1>Poetry Generator</h1>
         <form method="post">

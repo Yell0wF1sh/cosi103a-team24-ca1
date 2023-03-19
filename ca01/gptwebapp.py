@@ -19,12 +19,8 @@ On Windows:
 
 @Modifier: Qiuyang Wang
 @Modifier: Steve Wang
-<<<<<<< HEAD
-@Date: 2023-3-19
-=======
 @Modifier: Shentong Rao
-@Date: 2023-3-15
->>>>>>> f480b63b294170eab10723611c07dd3e5f220989
+@Date: 2023-3-19
 '''
 from flask import request, redirect, url_for, Flask
 from gpt import GPT

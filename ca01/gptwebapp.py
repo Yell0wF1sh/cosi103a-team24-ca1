@@ -140,7 +140,8 @@ def about():
                 This is a web application that can implement several functionalities related to poetry based on the user's input. It is built on Flask and GPT-3.
             </p>
             <p>
-                Genarator can generate poems based on the user's setting. Translator can translate the user's poetry into any language.
+                Genarator can generate poems based on the user's setting. Translator can translate the user's poetry into any language. the namer is used for naming
+                a poem after the poem is generated or translated which make the web application more complete with generator, translator of poem and namer of the poem
             </p>
             <p>
                 Have fun!

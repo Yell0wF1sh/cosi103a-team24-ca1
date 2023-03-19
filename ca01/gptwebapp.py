@@ -19,7 +19,12 @@ On Windows:
 
 @Modifier: Qiuyang Wang
 @Modifier: Steve Wang
+<<<<<<< HEAD
 @Date: 2023-3-19
+=======
+@Modifier: Shentong Rao
+@Date: 2023-3-15
+>>>>>>> f480b63b294170eab10723611c07dd3e5f220989
 '''
 from flask import request, redirect, url_for, Flask
 from gpt import GPT
@@ -44,6 +49,9 @@ def index():
         <br>
         <a href="{url_for('translate')}">Translator</a>
         <br>
+        <a href="{url_for('ShentongRao')}">poem_namer</a>
+        <br>
+
         <a href="{url_for('team')}">Member</a>
 
     '''
@@ -90,7 +98,7 @@ def team():
                 </div>
                 <div id="sr">
                     <h2>Shentong Rao</h2>
-                    <p>github:</p>
+                    <div>github: <a href="https://github.com/Shentongr">https://github.com/Shentongr</a></div>
                 </div>
             </div>
         </body>
@@ -136,7 +144,8 @@ def about():
                 This is a web application that can implement several functionalities related to poetry based on the user's input. It is built on Flask and GPT-3.
             </p>
             <p>
-                Genarator can generate poems based on the user's setting. Translator can translate the user's poetry into any language.
+                Genarator can generate poems based on the user's setting. Translator can translate the user's poetry into any language. the namer is used for naming
+                a poem after the poem is generated or translated which make the web application more complete with generator, translator of poem and namer of the poem
             </p>
             <p>
                 Have fun!
@@ -254,6 +263,37 @@ def qiuyangwang():
         <a href={url_for('index')}> Back to Home Page</a>
         '''
 
+"""
+@Author: Shentong Rao
+"""
+
+@app.route('/ShentongRao',methods = ['GET', 'POST'])
+def ShentongRao():
+    if request.method == 'POST':
+        text = request.form['text']
+        answer = gptAPI.poetry_namer(text)
+        return f'''
+        <h1>Poetry Generator</h1>
+        <pre style="bgcolor:blue">the poem is: {text}</pre>
+        <br>
+        the poem name is :
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('ShentongRao')}> Name another poem</a>
+        <br>
+        <a href={url_for('index')}> Back to Home Page</a>
+        '''
+    elif request.method == 'GET':
+        return f'''
+        <h1>Poetry Generator</h1>
+        <form method="post">
+            Enter the poem you want to generate name below (note: the name of the poem would be in English): <input type="text" name="text"><br>
+            <p><input type=submit value="generate">
+        </form>
+        <br>
+        <a href={url_for('index')}> Back to Home Page</a>
+        '''
+    
+
 
 """
 @Author: Steve Wang
@@ -266,6 +306,7 @@ def translate():
         text = request.form['text']
         lang = request.form['lang']
         answer = gptAPI.poetry_translator(text, lang)
+        print(answer)
         return f'''
          <!DOCTYPE html>
 
@@ -273,7 +314,7 @@ def translate():
             </head>
 
             <body>
-                <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                <div style="width: 80vw;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
                     <h1 style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Poetry Generator</h1>
                     <table style="margin-bottom: 10px">
                         <tr style="margin: 10px">

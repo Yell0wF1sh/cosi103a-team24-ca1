@@ -14,7 +14,8 @@ On Windows:
 
 @Modifier: Qiuyang Wang
 @Modifier: Steve Wang
-@Date: 2023-3-15
+@Modifier: Shentong Rao
+@Date: 2023-3-18
 '''
 import openai
 
@@ -75,6 +76,23 @@ class GPT():
             n=1,
             stop=None,
             temperature=1.0,
+        )
+
+        response = completion.choices[0].text
+        return response
+    
+    def poetry_namer(self, text):
+        '''Generate a name for a poem 
+            @Author: Shentong Rao
+        '''
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt='Please give the name of this poem' +
+            text + '.',
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.6,
         )
 
         response = completion.choices[0].text

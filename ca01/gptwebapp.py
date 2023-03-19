@@ -19,7 +19,7 @@ On Windows:
 
 @Modifier: Qiuyang Wang
 @Modifier: Steve Wang
-@Date: 2023-3-15
+@Date: 2023-3-19
 '''
 from flask import request, redirect, url_for, Flask
 from gpt import GPT
@@ -299,7 +299,7 @@ def translate():
             </head>
             <body>
                 <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
-                    <h1>Poetry Generator</h1>
+                    <h1>Poetry Translator</h1>
                     <form method="post">
                         <h3>Enter your the text of the original poem below:</h3>
                         <input type="text" name="text" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;"><br>

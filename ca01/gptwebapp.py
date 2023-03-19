@@ -19,6 +19,7 @@ On Windows:
 
 @Modifier: Qiuyang Wang
 @Modifier: Steve Wang
+@Modifier: Shentong Rao
 @Date: 2023-3-15
 '''
 from flask import request, redirect, url_for, Flask
@@ -44,6 +45,9 @@ def index():
         <br>
         <a href="{url_for('translate')}">Translator</a>
         <br>
+        <a href="{url_for('ShentongRao')}">poem_namer</a>
+        <br>
+
         <a href="{url_for('team')}">Member</a>
 
     '''
@@ -90,7 +94,7 @@ def team():
                 </div>
                 <div id="sr">
                     <h2>Shentong Rao</h2>
-                    <p>github:</p>
+                    <div>github: <a href="https://github.com/Shentongr">https://github.com/Shentongr</a></div>
                 </div>
             </div>
         </body>
@@ -253,6 +257,37 @@ def qiuyangwang():
         <br>
         <a href={url_for('index')}> Back to Home Page</a>
         '''
+
+"""
+@Author: Shentong Rao
+"""
+
+@app.route('/ShentongRao',methods = ['GET', 'POST'])
+def ShentongRao():
+    if request.method == 'POST':
+        text = request.form['text']
+        answer = gptAPI.poetry_namer(text)
+        return f'''
+        <h1>Poetry Generator</h1>
+        <pre style="bgcolor:blue">the poem is: {text}</pre>
+        <br>
+        the poem name is :
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('ShentongRao')}> Name another poem</a>
+        <br>
+        <a href={url_for('index')}> Back to Home Page</a>
+        '''
+    elif request.method == 'GET':
+        return f'''
+        <h1>Poetry Generator</h1>
+        <form method="post">
+            Enter the poem you want to generate name below (note: the name of the poem would be in English): <input type="text" name="text"><br>
+            <p><input type=submit value="generate">
+        </form>
+        <br>
+        <a href={url_for('index')}> Back to Home Page</a>
+        '''
+    
 
 
 """

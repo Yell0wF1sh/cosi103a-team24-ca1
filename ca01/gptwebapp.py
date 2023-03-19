@@ -266,6 +266,7 @@ def translate():
         text = request.form['text']
         lang = request.form['lang']
         answer = gptAPI.poetry_translator(text, lang)
+        print(answer)
         return f'''
          <!DOCTYPE html>
 
@@ -273,7 +274,7 @@ def translate():
             </head>
 
             <body>
-                <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                <div style="width: 80vw;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
                     <h1 style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Poetry Generator</h1>
                     <table style="margin-bottom: 10px">
                         <tr style="margin: 10px">

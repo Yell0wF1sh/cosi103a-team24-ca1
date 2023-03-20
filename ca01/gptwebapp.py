@@ -249,24 +249,30 @@ def qiuyangwang():
         '''
     elif request.method == 'GET':
         return f'''
-        <h1>Poetry Generator</h1>
-        <form method="post">
-            Enter your the theme of your poem below (seperate with space if there are multiple themes): <input type="text" name="theme"><br>
-            Enter your the style of your poem below: <input type="text" name="style"><br>
-            <p><input type=submit value="generate">
-        </form>
-        <br>
-        <a href={url_for('index')}> Back to Home Page</a>
+        <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+            <h1>Poetry Generator</h1>
+            <form method="post">
+                <h3>Enter your the theme of your poem below (seperate with space if there are multiple themes):</h3>
+                <input type="text" name="theme" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;">
+                <h3>Enter your the style of your poem below:</h3>
+                <input type="text" name="style" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;"><br>
+                <input type=submit value="generate" style="padding: 15px 32px;background-color: rgba(66, 245, 144, 0.837);text-align: center;font-size: 16px;border:none;font-weight:bold;margin-top:20px;border-radius:5px">
+            </form>
+            <br>
+            <a href={url_for('index')}> Back to Home Page</a>
+        </div>
         '''
+
 
 """
 @Author: Shentong Rao
 """
 
-@app.route('/ShentongRao',methods = ['GET', 'POST'])
+
+@app.route('/ShentongRao', methods=['GET', 'POST'])
 def ShentongRao():
-     """Display shentongrao's page which is a poem name generator"""
-     if request.method == 'POST':
+    """Display shentongrao's page which is a poem name generator"""
+    if request.method == 'POST':
         text = request.form['text']
         answer = gptAPI.poetry_namer(text)
         return f'''
@@ -279,17 +285,19 @@ def ShentongRao():
         <br>
         <a href={url_for('index')}> Back to Home Page</a>
         '''
-     elif request.method == 'GET':
+    elif request.method == 'GET':
         return f'''
-        <h1>Poetry Generator</h1>
-        <form method="post">
-            Enter the poem you want to generate name below (note: the name of the poem would be in English): <input type="text" name="text"><br>
-            <p><input type=submit value="generate">
-        </form>
-        <br>
-        <a href={url_for('index')}> Back to Home Page</a>
+        <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+            <h1>Poetry Generator</h1>
+            <form method="post">
+                <h3>Enter the poem you want to generate name below (note: the name of the poem would be in English):</h3>
+                <input type="text" name="text" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;"><br>
+                <input type=submit value="generate" style="padding: 15px 32px;background-color: rgba(66, 245, 144, 0.837);text-align: center;font-size: 16px;border:none;font-weight:bold;margin-top:20px;border-radius:5px">
+            </form>
+            <br>
+            <a href={url_for('index')}> Back to Home Page</a>
+        </div>
         '''
-    
 
 
 """

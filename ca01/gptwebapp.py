@@ -38,19 +38,39 @@ def index():
     ''' display links to each of the team-members pages '''
     print('processing / route')
     return f'''
-        <h1>cosi103a-team24-ca1</h1>
-        <a href="{url_for('about')}">About</a>
-        <br>
-        <a href="{url_for('qiuyangwang')}">Generator</a>
-        <br>
-        <a href="{url_for('translate')}">Translator</a>
-        <br>
-        <a href="{url_for('ShentongRao')}">poem_namer</a>
-        <br>
-
-        <a href="{url_for('team')}">Member</a>
+        <!DOCTYPE html>
+        <head>
+        </head>
+        <body>
+            <div style="width: 80vw;height: 80vh;text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);padding:10px;">
+                <h1>cosi103a-team24-ca1</h1>
+                <table style="width: 100%;height:100%">
+                    <tr style="align-item=center;">
+                        <td><a href="{url_for('about')}" style="background-color: rgb(56, 245, 191); padding: 50px 70px;text-decoration:none;text-align:center;border-radius:5px;font-size: 30px;font-weight:bold">About</a></td>
+                        <td><a href="{url_for('team')}" style="background-color: rgba(85, 224, 54); padding: 50px 70px;text-decoration:none;text-align:center;border-radius:5px;font-size: 30px;font-weight:bold">Member</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{url_for('qiuyangwang')}" style="background-color: rgb(80, 159, 250); padding: 50px 70px;text-decoration:none;text-align:center;border-radius:5px;font-size: 30px;font-weight:bold">Generator</a></td>
+                        <td><a href="{url_for('ShentongRao')}" style="background-color: rgb(111, 151, 252); padding: 50px 70px;text-decoration:none;text-align:center;border-radius:5px;font-size: 30px;font-weight:bold">poem_namer</a></td>
+                        <td><a href="{url_for('translate')}" style="background-color: rgb(139, 147, 247); padding: 50px 70px;text-decoration:none;text-align:center;border-radius:5px;font-size: 30px;font-weight:bold">Translator</a></td>
+                    </tr>
+                </table>
+            </div>
+        </body>
 
     '''
+
+#         <h1>cosi103a-team24-ca1</h1>
+#         <a href="{url_for('about')}">About</a>
+#         <br>
+#         <a href="{url_for('qiuyangwang')}">Generator</a>
+#         <br>
+#         <a href="{url_for('translate')}">Translator</a>
+#         <br>
+#         <a href="{url_for('ShentongRao')}">poem_namer</a>
+#         <br>
+
+#         <a href="{url_for('team')}">Member</a>
 
 
 @app.route('/team')
@@ -65,7 +85,7 @@ def team():
                     margin: auto;
                     padding: 20px;
                     width: 60%;
-                    background-color: lightblue;
+                    background-color: rgb(85, 224, 54);
                     text-align: center;
                 }
                 #body {
@@ -75,7 +95,7 @@ def team():
                     text-align: center;
                 }
                 #sr, #qw, #sw {
-                    border: 3px solid blue;
+                    border: 3px solid rgb(85, 224, 54);
                     padding: 5px;
                     margin: 5px;
                 }
@@ -249,17 +269,17 @@ def qiuyangwang():
         '''
     elif request.method == 'GET':
         return f'''
-        <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+        <div style="width: 80vw;height: 80vh;border: 3px solid rgb(80, 159, 250);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
             <h1>Poetry Generator</h1>
             <form method="post">
                 <h3>Enter your the theme of your poem below (seperate with space if there are multiple themes):</h3>
                 <input type="text" name="theme" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;">
                 <h3>Enter your the style of your poem below:</h3>
                 <input type="text" name="style" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;"><br>
-                <input type=submit value="generate" style="padding: 15px 32px;background-color: rgba(66, 245, 144, 0.837);text-align: center;font-size: 16px;border:none;font-weight:bold;margin-top:20px;border-radius:5px">
+                <input type=submit value="generate" style="padding: 15px 32px;background-color: rgb(80, 159, 250);text-align: center;font-size: 16px;border:none;font-weight:bold;margin-top:20px;border-radius:5px">
             </form>
             <br>
-            <a href={url_for('index')}> Back to Home Page</a>
+            <a href={url_for('index')} style="background-color: rgb(80, 159, 250); padding: 15px 32px;text-decoration:none;text-align:center;border-radius:5px;font-size: 16px;font-weight:bold"> Back to Home Page</a>
         </div>
         '''
 
@@ -287,15 +307,15 @@ def ShentongRao():
         '''
     elif request.method == 'GET':
         return f'''
-        <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+        <div style="width: 80vw;height: 80vh;border: 3px solid rgb(111, 151, 252);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
             <h1>Poetry Generator</h1>
             <form method="post">
                 <h3>Enter the poem you want to generate name below (note: the name of the poem would be in English):</h3>
                 <input type="text" name="text" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;"><br>
-                <input type=submit value="generate" style="padding: 15px 32px;background-color: rgba(66, 245, 144, 0.837);text-align: center;font-size: 16px;border:none;font-weight:bold;margin-top:20px;border-radius:5px">
+                <input type=submit value="generate" style="padding: 15px 32px;background-color: rgb(111, 151, 252);text-align: center;font-size: 16px;border:none;font-weight:bold;margin-top:20px;border-radius:5px">
             </form>
             <br>
-            <a href={url_for('index')}> Back to Home Page</a>
+            <a href={url_for('index')} style="background-color: rgb(111, 151, 252); padding: 15px 32px;text-decoration:none;text-align:center;border-radius:5px;font-size: 16px;font-weight:bold"> Back to Home Page</a>
         </div>
         '''
 
@@ -319,21 +339,21 @@ def translate():
             </head>
 
             <body>
-                <div style="width: 80vw;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
-                    <h1 style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Poetry Generator</h1>
+                <div style="width: 80vw;border: 3px solid rgb(139, 147, 247);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                    <h1 style="text-shadow: 2px 2px 5px rgb(139, 147, 247);">Poetry Generator</h1>
                     <table style="margin-bottom: 10px">
                         <tr style="margin: 10px">
-                            <th style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Original Text</th>
-                            <th style="text-shadow: 2px 2px 5px rgba(75, 176, 47, 0.866);">Translated Text</th>
+                            <th style="text-shadow: 2px 2px 5px rgb(139, 147, 247);">Original Text</th>
+                            <th style="text-shadow: 2px 2px 5px rgb(139, 147, 247);">Translated Text</th>
                         </tr>
                         <tr>
-                            <td style="text-align: center; padding: 10px 10px;border:1.5px solid rgba(66, 245, 144, 0.837);">{text}</td>
-                            <td style="text-align: center; padding: 10px 10px;border:1.5px solid rgba(66, 245, 144, 0.837);">{answer}</td>
+                            <td style="text-align: center; padding: 10px 10px;border:1.5px solid rgb(139, 147, 247);">{text}</td>
+                            <td style="text-align: center; padding: 10px 10px;border:1.5px solid rgb(139, 147, 247);">{answer}</td>
                         </tr>
                     <table>
-                    <a href={url_for('translate')}> Translate Another Poem</a>
+                    <a href={url_for('translate')} style="background-color: rgb(139, 147, 247); padding: 15px 32px;text-decoration:none;text-align:center;border-radius:5px;font-size: 16px;font-weight:bold"> Translate Another Poem</a>
                     <br>
-                    <a href={url_for('index')}> Back to Home Page</a>
+                    <a href={url_for('index')} style="background-color: rgb(139, 147, 247); padding: 15px 32px;text-decoration:none;text-align:center;border-radius:5px;font-size: 16px;font-weight:bold"> Back to Home Page</a>
                 </div>
             </body>
         '''
@@ -344,17 +364,17 @@ def translate():
             <head>
             </head>
             <body>
-                <div style="width: 80vw;height: 80vh;border: 3px solid rgba(66, 245, 144, 0.837);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                <div style="width: 80vw;height: 80vh;border: 3px solid rgb(139, 147, 247);text-align: center;margin: auto;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
                     <h1>Poetry Translator</h1>
                     <form method="post">
                         <h3>Enter your the text of the original poem below:</h3>
                         <input type="text" name="text" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;"><br>
                         <h3>Enter the language that you want the poem to be:</h3>
                         <input type="text" name="lang" style="width: 90%;border-radius: 5px;padding: 20px 10px; line-height: 28px;"><br>
-                        <input type=submit value="Generate" style="padding: 15px 32px;background-color: rgba(66, 245, 144, 0.837);text-align: center;font-size: 16px;border:none;font-weight:bold;margin-top:20px;border-radius:5px">
+                        <input type=submit value="Generate" style="padding: 15px 32px;background-color: rgb(139, 147, 247);text-align: center;font-size: 16px;border:none;font-weight:bold;margin-top:20px;border-radius:5px">
                     </form>
                     <br>
-                    <a href={url_for('index')}> Back to Home Page</a>
+                    <a href={url_for('index')} style="background-color: rgb(139, 147, 247); padding: 15px 32px;text-decoration:none;text-align:center;border-radius:5px;font-size: 16px;font-weight:bold"> Back to Home Page</a>
                 </div>
             </body>
         '''
